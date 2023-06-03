@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockoff Google UCI Edition</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheet.css') }}">
+</head>
+<body>
+    <h1>Knockoff Google UCI Edition</h1>
+
+    <form action="/search" method="POST">
+        <input type="text" name="query" placeholder="Enter your search query">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if no_results %}
+        <h1 class="search-results">Search Results</h1>
+        <h2 class="no-results">No results found.</h2>
+    {% else %}
+        {% if results %}
+            <h2 class="search-results">Search Results</h2>
+            {% for result in results %}
+                <div class="result">
+                    <div class="result-content">
+                        <h3 class="title"><a href="{{ result.url }}">{{ result.url }}</a></h3>
+                        <p class="confidence">Confidence: {{ result.confidence }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+
+</body>
+</html>
