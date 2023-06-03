@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    margin-bottom: 40px;
+    background-image: linear-gradient(to right, #4285F4, #DB4437, #F4B400, #0F9D58);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: black;
+}
+
+h3.title {
+    font-size: 15px;
+    margin-bottom: 15px;
+    text-align: left;
+    color: blue;
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+input[type="text"] {
+    height: 32px;
+    width: 500px;
+    padding: 6px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
+button[type="submit"] {
+    height: 32px;
+    padding: 0 16px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background-color: #f2f2f2;
+    color: #DB4437;
+    cursor: auto;
+}
+
+button[type="submit"]:hover {
+    background-color: #e6e6e6;
+
+}
+
+p.no-results {
+    margin-top: 15px;
+    font-size: 10px;
+    color: red;
+    text-align: center;
+}
+
+h1.search-results {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+div.result {
+    margin-bottom: 30px;
+}
+
+div.result .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+div.result .url {
+    color: dodgerblue;
+    text-decoration: none;
+    font-size: 12px;
+    text-align: left;
+}
+
+div.result .url:hover {
+    text-decoration: underline;
+    color: #0F9D58;
+}
+
+div.result .snippet {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #545454;
+}
+div.result-content {
+    display: flex;
+    align-items: center;
+}
+
+div.result-content .title {
+    flex-grow: 1;
+}
+
+div.result-content .confidence {
+    margin-left: 20px;
+}
+
+
+
