@@ -18,8 +18,9 @@ start_time = 0
 end_time = 0
 cache = {}
 
-
-
+"""
+ Load the index of index for fast search and the number of files (stored at end of CSV)
+ """
 def load_index():
     global index_of_index, N
     with open('index_of_index.json', 'r') as ioi_file:
@@ -31,23 +32,34 @@ def load_index():
     number_of_files = q.split(',')[1].split('\n')[0].strip()
     N = number_of_files
 
-
+"""
+Load the index data and display a message indicating that the search engine is ready.
+"""
 def load_data():
     global index_of_index, N
     print("_+_+_+_+_+_Please wait until the search engine has warmed up..._+_+_+_+_+_")
     load_index()
     print("_+_+_+_+_+_!!Search Engine Ready!!_+_+_+_+_+_")
 
-
+"""
+Populate index_of_index and N number of documents before handling each request
+"""
 @app.before_request
 def setup():
     load_data()
 
-
+"""
+Run the index.html template.
+"""
 @app.route('/')
 def index():
     return render_template("index.html")
 
+
+"""
+Handle the search request.
+Retrieves the query string from the form, executes the search, and renders the results on the index.html template.
+"""
 @app.route('/search', methods=['POST'])
 def search():
     query_string = request.form['query']
@@ -63,12 +75,31 @@ def search():
             results.append({'url': url, 'confidence': confidence, 'time': elapsed_time})
         return render_template("index.html", results=results, query=query_string, elapsed_time=elapsed_time)
 
+"""
+Calculate the IDF score for a word in the inverted index.
 
+Args:
+    tf (int): Term frequency of the word in a document.
+    df (int): Document frequency of the word.
+    N (int): Total number of documents in the index.
+
+Returns:
+    float: IDF score of the word.
+"""
 def word_scoring(tf, df, N):
     idf = tf * log10(N / df)
     return idf
 
 
+"""
+Execute the search query by searching through inverted index. Caching also occurs here to speed up future queries.
+
+Args:
+    query (str): The search query.
+
+Returns:
+    list: List of (url, confidence) tuples representing the search results.
+"""
 def execute_search(query):
     global index_of_index, N, start_time, end_time, cache
     resp = {}
