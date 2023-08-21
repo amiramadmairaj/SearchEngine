@@ -158,7 +158,7 @@ def execute_search(query):
 # #Implement the summarization of the resulting pages using the OpenAI API and show the short summaries in the web GUI.
 # def gpt_summary(query_string):
 #
-#     openai.api_key = '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'
+#     openai.api_key = 'REDACTED'
 #
 #     result = openai.Completion.create(
 #         engine='text-davinci-003',
